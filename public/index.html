@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Student Form</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <main class="container">
+    <header class="site-header">
+      <h1>Student Management</h1>
+      
+    </header>
+
+    <section class="grid">
+      <div class="card form-card">
+        <h2>Add Student</h2>
+        <div id="msg" class="alert" aria-live="polite" style="display:none"></div>
+        <form id="studentForm" class="form">
+          <div class="row">
+            <label>
+              Name *
+              <input type="text" id="name" name="name" placeholder="Enter full name" />
+            </label>
+            <label>
+              Gender *
+              <select id="gender" name="gender">
+                <option value="">-- Select --</option>
+                <option>Male</option><option>Female</option><option>Other</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="row">
+            <label>
+              Standard *
+              <input type="text" id="standard" name="standard" placeholder="e.g. 10th / BSc" />
+            </label>
+            <label>
+              Date of Birth *
+              <input type="date" id="dob" name="dob" />
+            </label>
+          </div>
+
+          <div class="row">
+            <label>
+              Age (auto)
+              <input type="number" id="age" name="age" readonly />
+            </label>
+            <label>
+              Father Name
+              <input type="text" id="father_name" name="father_name" placeholder="Father / Guardian name" />
+            </label>
+          </div>
+
+          <div class="row">
+            <label>
+              Father Mobile *
+              <input type="text" id="father_mobile" name="father_mobile" maxlength="10" placeholder="10-digit mobile" />
+            </label>
+            <label>
+              Email *
+              <input type="email" id="email" name="email" placeholder="abc@example.com" />
+            </label>
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="btn primary">Add Student</button>
+            <button type="button" id="clearBtn" class="btn ghost">Clear</button>
+          </div>
+        </form>
+      </div>
+
+      
+      <div class="card list-card">
+        <h2>Students List</h2>
+        
+       
+        <div class="table-wrap" id="list">
+          
+        </div>
+
+        
+        <div id="recordCount" class="record-count" aria-live="polite" style="padding:10px 14px 6px 14px;color:#475569">
+          Total records: 0
+        </div>
+
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <small>Student App — Built with HTML, JS, PHP & MySQL</small>
+    </footer>
+
+    
+    <div id="studentModal" class="modal" style="display:none;">
+      <div class="modal-card">
+        <header class="modal-head">
+          <h3 id="modalTitle">View Student</h3>
+          <button id="modalClose" class="btn">✕</button>
+        </header>
+
+        <div class="modal-body" id="modalBody">
+        </div>
+
+        <footer class="modal-foot" id="modalFoot" style="display:none;">
+          <button id="saveEdit" class="btn primary">Save</button>
+          <button id="cancelEdit" class="btn ghost">Cancel</button>
+        </footer>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

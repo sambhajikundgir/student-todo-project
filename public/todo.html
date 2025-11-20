@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Modern Todo App</title>
+<link rel="stylesheet" href="assets/css/todo.css" />
+</head>
+
+<body>
+<div class="container">
+  <h1 class="title">Todo App <span>(Array Based)</span></h1>
+
+  <div class="todo-card">
+    <div class="input-row">
+      <input id="taskInput" type="text" placeholder="Add a new task..." />
+      <button id="addBtn" class="btn primary">Add</button>
+    </div>
+
+    <ul id="list" class="todo-list"></ul>
+  </div>
+</div>
+
+<script>
+let todos = [];
+
+function render(){
+  const ul = document.getElementById("list");
+  ul.innerHTML = "";
+
+  todos.forEach((t) => {
+    const li = document.createElement("li");
+    li.className = "todo-item " + (t.done ? "done" : "");
+
+    li.innerHTML = `
+      <span class="task-text">${t.text}</span>
+
+      <div class="actions">
+        <button class="btn small" data-act="edit" data-id="${t.id}">Edit</button>
+        <button class="btn small success" data-act="toggle" data-id="${t.id}">
+          ${t.done ? "Undo" : "Complete"}
+        </button>
+        <button class="btn small danger" data-act="del" data-id="${t.id}">Delete</button>
+      </div>
+    `;
+
+    ul.appendChild(li);
+  });
+}
+
+document.getElementById("addBtn").addEventListener("click", () => {
+  const inp = document.getElementById("taskInput");
+  const val = inp.value.trim();
+  if (!val) return alert("Enter task");
+
+  const id = Date.now();
+  todos.push({ id, text: val, done: false });
+
+  inp.value = "";
+  render();
+});
+
+document.getElementById("list").addEventListener("click", (e) => {
+  const btn = e.target;
+  const act = btn.getAttribute("data-act");
+  const id = btn.getAttribute("data-id");
+
+  if (!act) return;
+
+  const index = todos.findIndex((x) => String(x.id) === id);
+  if (index === -1) return;
+
+  if (act === "del") {
+    todos.splice(index, 1);
+  }
+
+  if (act === "toggle") {
+    todos[index].done = !todos[index].done;
+  }
+
+  if (act === "edit") {
+    const newText = prompt("Edit task", todos[index].text);
+    if (newText !== null) {
+      todos[index].text = newText.trim() || todos[index].text;
+    }
+  }
+
+  render();
+});
+
+render();
+</script>
+</body>
+</html>

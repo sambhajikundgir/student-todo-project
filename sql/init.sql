@@ -1,0 +1,14 @@
+CREATE DATABASE IF NOT EXISTS school;
+USE school;
+CREATE TABLE IF NOT EXISTS students (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(150) NOT NULL,
+  gender ENUM('Male','Female','Other') NOT NULL,
+  standard VARCHAR(50) NOT NULL,
+  dob DATE NOT NULL,
+  age INT NOT NULL,
+  father_name VARCHAR(150),
+  father_mobile VARCHAR(15),
+  email VARCHAR(150) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
